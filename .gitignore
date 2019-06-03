@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# docker generated files #
+######################
+.vscode
+
+# django generated files #
+######################
+apps/df_user/migrations/*
+# package needed
+apps/df_user/migrations/__init__.py

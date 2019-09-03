@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login),
     path('register/', register),
+    path('', index),
     path('user/', include('df_user.urls')),
+    path('goods/', include('df_goods.urls')),
 ]

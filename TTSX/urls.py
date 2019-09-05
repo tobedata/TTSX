@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from apps.df_user.views import login, register
+from apps.df_user.views import login, register, logout
 from apps.df_goods.views import index
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login),
+    re_path(r'^login/$', login),
+    re_path(r'^logout/$', logout),
     path('register/', register),
     path('', index),
     path('user/', include('df_user.urls')),

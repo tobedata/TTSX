@@ -24,7 +24,8 @@
 						$('pwd_error').hide();
 
 						if (data.pwd_error == true) {
-							window.location.href = '/user/center_info/';
+							// 跳转到登录前访问的url
+							window.location.href = data.url;
 						} else {
 							$('.pwd_error').show().text('密码输入错误');
 						}
@@ -62,7 +63,7 @@
 
 {% block body %}
 	<div class="login_top clearfix">
-		<a href="index.html" class="login_logo"><img src="/static/images/logo02.png"></a>
+		<a href="/" class="login_logo"><img src="/static/images/logo02.png"></a>
 	</div>
 
 	<div class="login_form_bg">

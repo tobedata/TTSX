@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from hashlib import sha1
 from df_user import models
+from df_goods.models import GoodsInfo
+from . import user_decorator
 import json
 
 
@@ -58,8 +60,11 @@ def login_handle(request):
             request.session['user_id'] = u_obj.id
             request.session['user_name'] = u_obj.uname
 
-            # 用户名和密码都正确
-            content = {'user_error': user_error, 'pwd_error': pwd_error}
+            # 获取登录前访问的url（装饰器新增功能cookies记录登录前访问的url），默认首页
+            url = request.COOKIES.get('url', '/')
+
+            # 用户名和密码都正确，附带登录前url
+            content = {'user_error': user_error, 'pwd_error': pwd_error, 'url': url}
             # 必须以JSON格式返回
             response.content = json.dumps(content)
 
@@ -76,6 +81,14 @@ def login_handle(request):
         response.content = json.dumps(content)
 
         return response
+
+
+def logout(request):
+    """登出处理"""
+    # 清除用户登录相关session，也可指定清除
+    request.session.flush()
+
+    return redirect('/')
 
 
 def register(request):
@@ -129,41 +142,63 @@ def register_handle(request):
 
     return redirect('/login/')
 
-
+# 利用装饰器新增验证用户是否登录功能
+@user_decorator.verifylogin
 def user_center_info(request):
     """个人中心-个人信息页"""
-    username = request.session.get('user_name')
 
-    if username == None:
-        return redirect('/login/')
-    else:
-        user_obj = models.UserInfo.objects.get(id=request.session.get('user_id'))
-        print(user_obj)
-        context = {
-            'title': '个人信息',
-            'username': username,
-            'user_obj': user_obj,
-            'search_type': 0,
-        }
+    # 之前通过获取session来判断用户登录状态
+    # username = request.session.get('user_name')
+    # if username == None:
+    #     return redirect('/login/')
+    # else:
+    #     user_obj = models.UserInfo.objects.get(id=request.session.get('user_id'))
+    #     print(user_obj)
+    #     context = {
+    #         'title': '个人信息',
+    #         'user_obj': user_obj,
+    #         'search_type': 0,
+    #     }
+    #     return render(request, 'df_user/user_center_info.html', context)
+    
+    # 利用装饰器判断登录状态后，直接完成函数其他功能
+    user_obj = models.UserInfo.objects.get(id=request.session.get('user_id'))
 
-        return render(request, 'df_user/user_center_info.html', context)
+    # 最近浏览记录
+    viewed = request.COOKIES.get('viewed')
+    
+    # 获取的商品对象列表，没有按照filter前的顺序，按照id降序排列
+    # g_obj = GoodsInfo.objects.filter(id__in=viewed.split(','))
 
+    # 自行遍历最近浏览记录列表，获取数据库商品对象，重新构建列表传给前端模板
+    viewed_list = []
+    if viewed != '':
+        for id in viewed.split(','):
+            g_obj = GoodsInfo.objects.get(id=int(id))
+            viewed_list.append(g_obj)
 
+    context = {
+        'title': '个人信息',
+        'user_obj': user_obj,
+        'search_type': 0,
+        'viewed_list': viewed_list,
+    }
+
+    return render(request, 'df_user/user_center_info.html', context)
+
+@user_decorator.verifylogin
 def user_center_site(request):
     """个人中西-收货地址页"""
     user_id = request.session.get('user_id')
-
+    
     if request.method == 'GET':
-        if user_id == None:
-            return redirect('/login')
-        else:
-            user_obj = models.UserInfo.objects.get(id=user_id)
-            context = {
-                'title': '收货地址',
-                'user_obj': user_obj,
-                'search_type': 0,
-            }
-            return render(request, 'df_user/user_center_site.html', context)
+        user_obj = models.UserInfo.objects.get(id=user_id)
+        context = {
+            'title': '收货地址',
+            'user_obj': user_obj,
+            'search_type': 0,
+        }
+        return render(request, 'df_user/user_center_site.html', context)
     elif request.method == 'POST':
         
         user_dic = {

@@ -108,4 +108,30 @@ def goods_detail(request, gid):
         "count": count,
     }
 
-    return render(request, "df_goods/detail.html", context)
+    response = render(request, "df_goods/detail.html", context)
+
+    # 最近浏览记录
+    if request.session.has_key('user_name'):
+        # 没有浏览记录，默认为空字符串
+        goods_ids = request.COOKIES.get('viewed', '')
+
+        if goods_ids != '':
+            # 字符串按逗号分隔为列表，进行添加，去重，删除操作
+            goods_list = goods_ids.split(',')
+            # 重复访问同一件商品，先将当前商品id删除
+            if goods_list.count(gid) >= 1:
+                goods_list.remove(gid)
+            # 当前商品id添加到列表最前面
+            goods_list.insert(0, gid)
+            # 只显示前5个
+            if len(goods_list) >= 6:
+                del goods_list[5]
+            # 合并列表为字符串，用逗号分隔
+            goods_ids = ','.join(goods_list)
+        else:
+            # 没有浏览记录，保存当前商品id
+            goods_ids = gid
+
+        response.set_cookie('viewed', goods_ids)
+
+    return response

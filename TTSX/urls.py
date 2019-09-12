@@ -27,4 +27,5 @@ urlpatterns = [
     path('', index),
     path('user/', include('df_user.urls')),
     path('goods/', include('df_goods.urls')),
+    path('cart/', include('df_cart.urls')),
 ]

@@ -165,7 +165,7 @@ def user_center_info(request):
     user_obj = models.UserInfo.objects.get(id=request.session.get('user_id'))
 
     # 最近浏览记录
-    viewed = request.COOKIES.get('viewed')
+    viewed = request.COOKIES.get('viewed', '')
     
     # 获取的商品对象列表，没有按照filter前的顺序，按照id降序排列
     # g_obj = GoodsInfo.objects.filter(id__in=viewed.split(','))
@@ -173,6 +173,7 @@ def user_center_info(request):
     # 自行遍历最近浏览记录列表，获取数据库商品对象，重新构建列表传给前端模板
     viewed_list = []
     if viewed != '':
+        print(viewed)
         for id in viewed.split(','):
             g_obj = GoodsInfo.objects.get(id=int(id))
             viewed_list.append(g_obj)

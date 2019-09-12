@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from df_goods import models
 from django.core.paginator import Paginator
+from df_cart.models import CartInfo
 
 
 def index(request):
@@ -19,10 +20,11 @@ def index(request):
     type02 = gtypes[1].goodsinfo_set.all().order_by('-gclick')[:3]
     type002 = gtypes[1].goodsinfo_set.all().order_by('-id')[:4]
 
+    # 顶部我的购物车旁边数量显示
     # 获取session的user_id值，判断用户是否登录，session是个字典可以用has_key()更规范
-    if request.session.get('user_id'):
-        # 通过user_id查询购物车模块的数据库获取商品对象的数量，未登录显示数量0
-        count = 1
+    if request.session.has_key('user_id'):
+        # 通过user_id查询购物车模块的数据库获取商品对象id的数量，未登录显示数量0
+        count = CartInfo.objects.filter(user_id=request.session['user_id']).count()
     else:
         count = 0
 
@@ -62,10 +64,11 @@ def goods_list(request, tid, sort, pindex):
     paginator = Paginator(glist, 2)
     page = paginator.page(int(pindex))
 
+    # 顶部我的购物车旁边数量显示
     # 获取session的user_id值，判断用户是否登录，session是个字典可以用has_key()更规范
-    if request.session.get('user_id'):
-        # 通过user_id查询购物车模块的数据库获取商品对象的数量，未登录显示数量0
-        count = 1
+    if request.session.has_key('user_id'):
+        # 通过user_id查询购物车模块的数据库获取商品对象id的数量，未登录显示数量0
+        count = CartInfo.objects.filter(user_id=request.session['user_id']).count()
     else:
         count = 0
 
@@ -93,10 +96,11 @@ def goods_detail(request, gid):
     gobj.gclick += 1
     gobj.save()
 
+    # 顶部我的购物车旁边数量显示
     # 获取session的user_id值，判断用户是否登录，session是个字典可以用has_key()更规范
-    if request.session.get('user_id'):
-        # 通过user_id查询购物车模块的数据库获取商品对象的数量，未登录显示数量0
-        count = 1
+    if request.session.has_key('user_id'):
+        # 通过user_id查询购物车模块的数据库获取商品对象id的数量，未登录显示数量0
+        count = CartInfo.objects.filter(user_id=request.session['user_id']).count()
     else:
         count = 0
 

@@ -117,11 +117,11 @@
 		</div>
 	</div>
 
-<!-- 加入购物车动画js，购物车模块再处理
 	<div class="add_jump"></div>
 
-	<script type="text/javascript" src="js/jquery-1.12.2.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript">
+		// 购物车按钮动画
 		var $add_x = $('#add_cart').offset().top;
 		var $add_y = $('#add_cart').offset().left;
 
@@ -130,17 +130,30 @@
 
 		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
 		$('#add_cart').click(function(){
+			// 判断是否登录，若未登录则提示登录
+            if($('.login_btn').text().indexOf('登录')>=0){
+                alert("请先登录后再购买");
+                location.href = '/login/';
+                return;
+            }
+
+			// 动画
 			$(".add_jump").stop().animate({
 				'left': $to_y+7,
 				'top': $to_x+7},
 				"fast", function() {
-					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
-					});
-
+					$(".add_jump").fadeOut('fast',function(){});
 			});
+
+			// 异步发送商品id和填入的数量
+            var gid = {{ gobj.id }};
+            var count = $('.num_show').val();
+            var url = '/cart/add_'+gid+'_'+count;
+            $.get(url, function (data) {
+                // 更新搜索框旁边的我的购物车总数
+                $('#show_count').html(data.count);
+            });
 		})
 	</script>
--->
 
 {% endblock goods_content %}

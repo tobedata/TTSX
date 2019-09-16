@@ -6,7 +6,7 @@
 			<h3>用户中心</h3>
 			<ul>
 				<li><a href="/user/center_info/">· 个人信息</a></li>
-				<li><a href="user_center_order.html">· 全部订单</a></li>
+				<li><a href="/user/center_order/">· 全部订单</a></li>
 				<li><a href="/user/center_site/" class="active">· 收货地址</a></li>
 			</ul>
 		</div>
@@ -24,23 +24,103 @@
 					{% csrf_token %}
 						<div class="form_group">
 							<label>收件人：</label>
-							<input type="text" name="recv_name" value={{ user_obj.uname }}>
+							<input id="recv_name" type="text" name="recv_name" value={{ user_obj.recv_name }}>
+							<span style="display:none">提示信息</span>
 						</div>
 						<div class="form_group form_group2">
 							<label>详细地址：</label>
-							<textarea class="site_area" name="recv_addr">{{ user_obj.recv_addr }}</textarea>
+							<textarea id="recv_addr" class="site_area" name="recv_addr">{{ user_obj.recv_addr }}</textarea>
+							<span style="display:none">提示信息</span>
 						</div>
 						<div class="form_group">
 							<label>邮编：</label>
-							<input type="text" name="recv_code" value={{ user_obj.recv_code }}>
+							<input id="recv_code" type="text" name="recv_code" value={{ user_obj.recv_code }}>
+							<span style="display:none">提示信息</span>
 						</div>
 						<div class="form_group">
 							<label>手机：</label>
-							<input type="text" name="uphone" value={{ user_obj.uphone }}>
+							<input id="uphone" type="text" name="uphone" value={{ user_obj.uphone }}>
+							<span style="display:none">提示信息</span>
 						</div>
 
 						<input type="submit" value="提交" class="info_submit">
 					</form>
+					<script>
+						// 验证输入有效性
+						var check_recv_name = false;
+						var check_recv_addr = false;
+						var check_recv_code = false;
+						var check_uphone = false;
+
+						$('#recv_name').blur(function () {
+							var len = $(this).val().length;
+							if(len<32){
+								$(this).next().hide();
+								check_recv_name = false;
+							}
+							else
+							{
+								$(this).next().html('收件人姓名太长了')
+								$(this).next().show();
+								check_recv_name = true;
+							}
+						});
+
+						$('#recv_addr').blur(function () {
+							var len = $(this).val().length;
+							if(len<100){
+								$(this).next().hide();
+								check_recv_addr = false;
+							}
+							else
+							{
+								$(this).next().html('详细地址太长了')
+								$(this).next().show();
+								check_recv_addr = true;
+							}
+						});
+
+						$('#recv_code').blur(function () {
+							var re = /^[0-9]{6}$/;
+							if(re.test($(this).val())){
+								$(this).next().hide();
+								check_recv_code = false;
+							}
+							else
+							{
+								$(this).next().html('邮编格式不正确')
+								$(this).next().show();
+								check_recv_code = true;
+							}
+						});
+
+						$('#uphone').blur(function () {
+							var re = /^[0-9]{11}$/;
+							if(re.test($(this).val())){
+								$(this).next().hide();
+								check_uphone = false;
+							}
+							else
+							{
+								$(this).next().html('手机号码格式不正确')
+								$(this).next().show();
+								check_uphone = true;
+							}
+						});
+
+						$('form').submit(function () {
+							if(check_recv_name == false && check_recv_addr == false && check_recv_code == false && check_uphone == false)
+							{
+								return true;
+							}
+							else
+							{
+								return false;
+							}
+						})
+
+					
+					</script>
 				</div>
 		</div>
 	</div>

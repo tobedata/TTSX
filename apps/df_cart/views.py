@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from df_user import user_decorator
-from df_user.models import UserInfo
 from .models import CartInfo
 
 

@@ -8,4 +8,5 @@ urlpatterns = [
     re_path(r"^register_exist/$", views.register_exist),
     re_path(r"^login_handle/$", views.login_handle),
     re_path(r"^center_site/$", views.user_center_site),
+    re_path(r"^center_order/$", views.user_center_order),
 ]

@@ -122,6 +122,19 @@
 			total();
 		});
 
+		// 点击去结算，生成提交订单页面
+		$('#place_order').click(function () {
+			// 不涉及敏感数据，直接用get方式提交购物车id
+			url = '/order/?';
+			// 只提交购物车选中商品
+			$(':checked:not(#check_all)').each(function () {
+				var a = $(this).parent().parent().attr('id');
+				url = url+'cart_id='+a+'&'
+			});
+			// 根据生成的url，调转到提交订单页面
+			location.href = url.slice(0, url.length-1); // slice去掉最后的&
+		})
+
 	})
 </script>
 {% endblock head %}
@@ -137,7 +150,7 @@
 		<li class="col06">操作</li>
 	</ul>
 	{% for item in carts %}
-	<ul class="cart_list_td clearfix" id="{{ item.id }}"}>
+	<ul class="cart_list_td clearfix" id="{{ item.id }}">
 		<li class="col01"><input type="checkbox" name="" checked></li>
 		<li class="col02"><img src="/static/{{ item.goods.gpic }}/"></li>
 		<li class="col03">{{ item.goods.gtitle }}<br><em>{{ item.goods.gprice }}元/{{ item.goods.gunit }}</em></li>
@@ -159,6 +172,6 @@
 		<li class="col01"><input id="check_all" type="checkbox" name="" checked=""></li>
 		<li class="col02">全选</li>
 		<li class="col03">合计(不含运费)：<span>¥</span><em id="total_price">42.60</em><br>共计<b id="total_acount">{{ carts.count }}</b>件商品</li>
-		<li class="col04"><a href="place_order.html">去结算</a></li>
+		<li class="col04"><a id="place_order" href="javascript:;">去结算</a></li>
 	</ul>
 {% endblock content %}

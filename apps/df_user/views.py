@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from django.core.paginator import Paginator
 from hashlib import sha1
+
 from df_user import models
 from df_goods.models import GoodsInfo
+from df_order.models import OrderInfo
 from . import user_decorator
+
 import json
 
 
@@ -189,7 +193,7 @@ def user_center_info(request):
 
 @user_decorator.verifylogin
 def user_center_site(request):
-    """个人中西-收货地址页"""
+    """个人中心-收货地址页"""
     user_id = request.session.get('user_id')
     
     if request.method == 'GET':
@@ -212,3 +216,21 @@ def user_center_site(request):
         user_obj.update(**user_dic)
 
         return redirect('/user/center_site/')
+
+
+@user_decorator.verifylogin
+def user_center_order(request):
+    """个人中心-我的订单页"""
+    uid = request.session['user_id']
+    orders = OrderInfo.objects.filter(user_id=uid).order_by('-odate')
+
+    paginator = Paginator(orders, 2)
+    # 页面构造翻页的url参数"/user/center_order/?p=xx"，get获取，默认从第1页
+    page = paginator.get_page(int(request.GET.get('p', 1)))
+
+    context = {'title': '我的订单',
+               'search_type': 0,
+               'pageload': 0,
+               'page':page,
+    }
+    return render(request, 'df_user/user_center_order.html', context)

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from apps.df_user.views import login, register, logout
-from apps.df_goods.views import index
+from apps.df_goods.views import index, MySearchView
 
 
 urlpatterns = [
@@ -29,4 +29,6 @@ urlpatterns = [
     path('goods/', include('df_goods.urls')),
     path('cart/', include('df_cart.urls')),
     path('order/', include('df_order.urls')),
+    # re_path(r'^search/', include('haystack.urls')),
+    re_path(r'^search/', MySearchView()),  # 模板需要传递参数时
 ]

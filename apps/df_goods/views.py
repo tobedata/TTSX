@@ -135,7 +135,30 @@ def goods_detail(request, gid):
         else:
             # 没有浏览记录，保存当前商品id
             goods_ids = gid
+            
 
         response.set_cookie('viewed', goods_ids)
 
     return response
+
+
+# 全文检索框架需要
+def cart_count(request):
+    """计算当前用户购物车商品数量"""
+    if 'user_id' in request.session:
+        return CartInfo.objects.filter(user_id=request.session['user_id']).count
+    else:
+        return 0
+
+
+# 全文检索框架需要
+from haystack.views import SearchView
+class MySearchView(SearchView):
+    """自定义视图给搜索结果页传递参数"""
+    def extra_context(self):
+        context = super(MySearchView, self).extra_context()
+        # 模板需要什么就传什么
+        context['title'] = "搜索"
+        context['search_type'] = 1
+        context['count'] = cart_count(self.request)
+        return context

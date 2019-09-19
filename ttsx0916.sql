@@ -82,7 +82,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add group',4,'add_group'),(11,'Can change group',4,'change_group'),(12,'Can delete group',4,'delete_group'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add user info',7,'add_userinfo'),(20,'Can change user info',7,'change_userinfo'),(21,'Can delete user info',7,'delete_userinfo'),(22,'Can add goods type',8,'add_goodstype'),(23,'Can change goods type',8,'change_goodstype'),(24,'Can delete goods type',8,'delete_goodstype'),(25,'Can add goods info',9,'add_goodsinfo'),(26,'Can change goods info',9,'change_goodsinfo'),(27,'Can delete goods info',9,'delete_goodsinfo'),(28,'Can add cart info',10,'add_cartinfo'),(29,'Can change cart info',10,'change_cartinfo'),(30,'Can delete cart info',10,'delete_cartinfo');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add group',4,'add_group'),(11,'Can change group',4,'change_group'),(12,'Can delete group',4,'delete_group'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add user info',7,'add_userinfo'),(20,'Can change user info',7,'change_userinfo'),(21,'Can delete user info',7,'delete_userinfo'),(22,'Can add goods type',8,'add_goodstype'),(23,'Can change goods type',8,'change_goodstype'),(24,'Can delete goods type',8,'delete_goodstype'),(25,'Can add goods info',9,'add_goodsinfo'),(26,'Can change goods info',9,'change_goodsinfo'),(27,'Can delete goods info',9,'delete_goodsinfo'),(28,'Can add cart info',10,'add_cartinfo'),(29,'Can change cart info',10,'change_cartinfo'),(30,'Can delete cart info',10,'delete_cartinfo'),(31,'Can add order info',11,'add_orderinfo'),(32,'Can change order info',11,'change_orderinfo'),(33,'Can delete order info',11,'delete_orderinfo'),(34,'Can add order detail',12,'add_orderdetail'),(35,'Can change order detail',12,'change_orderdetail'),(36,'Can delete order detail',12,'delete_orderdetail');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `df_cart_cartinfo` (
   KEY `df_cart_cartinfo_user_id_db76e708_fk_df_user_userinfo_id` (`user_id`),
   CONSTRAINT `df_cart_cartinfo_goods_id_4357294f_fk_df_goods_goodsinfo_id` FOREIGN KEY (`goods_id`) REFERENCES `df_goods_goodsinfo` (`id`),
   CONSTRAINT `df_cart_cartinfo_user_id_db76e708_fk_df_user_userinfo_id` FOREIGN KEY (`user_id`) REFERENCES `df_user_userinfo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `df_cart_cartinfo` (
 
 LOCK TABLES `df_cart_cartinfo` WRITE;
 /*!40000 ALTER TABLE `df_cart_cartinfo` DISABLE KEYS */;
-INSERT INTO `df_cart_cartinfo` VALUES (4,1,9,1),(7,8,8,1),(8,2,11,1);
+INSERT INTO `df_cart_cartinfo` VALUES (16,1,11,1);
 /*!40000 ALTER TABLE `df_cart_cartinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +246,7 @@ CREATE TABLE `df_goods_goodsinfo` (
 
 LOCK TABLES `df_goods_goodsinfo` WRITE;
 /*!40000 ALTER TABLE `df_goods_goodsinfo` DISABLE KEYS */;
-INSERT INTO `df_goods_goodsinfo` VALUES (7,'红玫瑰苹果',71.90,'500g',50,'优选大果8个 单果约190-240g 进口水果','吃苹果既能减肥，又能帮助消化，另外老人吃苹果会有一定的帮助。苹果含有多种维生素、矿物质、糖类、脂肪等，构成大脑所必须的营养成分。苹果中的纤维，对儿童的生长发育有益，能促进生长和发育。苹果中的锌对儿童的记忆有益，能增强儿童的记忆力。但苹果中的酸能腐蚀牙齿，吃完苹果后最好漱漱口。',4,0,1,'images/df_goods/goods001.jpg'),(8,'鲜橙子',59.90,'500g',40,'约4kg装 生鲜榨汁夏橙 进口水果','橙子具有宽肠、理气、化痰、消食、开胃、止呕、止痛、止咳等功效，可用于治疗胸闷、腹胀、呕吐、便秘、小便不畅、痔疮出血，解酒、鱼、蟹毒等。',10,0,1,'images/df_goods/goods002.jpg'),(9,'牛油果',29.90,'500g',30,'4粒装（2生2熟）单果重约140-180g 新鲜水果','果实为一种营养价值很高的水果，含多种维生素、丰富的脂肪和蛋白质，钠、钾、镁、钙等含量也高，除作生果食用外也可作菜肴和罐头。',17,0,1,'images/df_goods/goods003.jpg'),(10,'葡萄柚',42.80,'500g',55,'优选大果4个 单果约320-380g 进口水果 海外直采','葡萄柚又叫西柚、朱栾。因挂果时果实密集，呈簇生状，似葡萄成串垂吊，故称葡萄柚。',10,0,1,'images/df_goods/goods004.jpg'),(11,'黄金油桃',38.70,'500g',66,'大果1kg 单果100-150g 新鲜水果','中国的油桃生产起步较晚，早期的品种多引自欧美，味道较酸，由于不太符合东方人的消费习惯，在生产上的影响有限，也给人们留下了“油桃是酸的”的印象。但油桃的营养价值高，富含维生素，有很高的食用价值。',52,0,1,'images/df_goods/goods005.jpg'),(12,'多宝鱼',88.00,'500g',30,'袋装 鲜活冷冻 可溯源海鱼 BAP认证 海鲜水产','胶质蛋白含量高，味道鲜美，营养丰富，具有很好的滋润皮肤和美容的作用，且能补肾健脑，助阳提神；经常食用，可以滋补健身，提高人的抗病能力。',0,0,2,'images/df_goods/goods006.jpg'),(13,'白虾',109.00,'500g',32,'400g 16-20只/盒 原装进口 火锅烧烤食材','虾类营养丰富，且肉质松软，易消化，对身体虚弱以及病后需要调养的人是好的食物',5,0,2,'images/df_goods/goods007.jpg'),(14,'金鲳鱼',39.00,'500g',54,'BAP认证 700g 2条 袋装 海鲜水产','金鲳鱼具有益气养血、补胃益精、滑利关节、柔筋利骨之功效，对消化不良、脾虚泄泻、贫血、筋骨酸痛等很有效。',4,0,2,'images/df_goods/goods008.jpg'),(15,'三文鱼',38.90,'500g',49,'250g/袋 1片装 海鲜水产','三文鱼营养丰富，富含不饱和脂肪酸，鱼肉中的蛋白质含 三文鱼片 三文鱼片(10张)  有18种氨基酸（其中包括人体必需的8种氨基酸），且蛋白质含量明显高于其他鱼类',11,0,2,'images/df_goods/goods009.jpg'),(16,'海鲈鱼',44.20,'500g',66,'400~500g 袋装 海鲜水产','海鲈鱼蛋白质丰富，肉质鲜美，是常见的海洋经济鱼类 海鲈鱼 海鲈鱼(6张)  之一。比较著名的菜肴有宫保海鲈球。',8,0,2,'images/df_goods/goods010.jpg');
+INSERT INTO `df_goods_goodsinfo` VALUES (7,'红玫瑰苹果',71.90,'500g',50,'优选大果8个 单果约190-240g 进口水果','吃苹果既能减肥，又能帮助消化，另外老人吃苹果会有一定的帮助。苹果含有多种维生素、矿物质、糖类、脂肪等，构成大脑所必须的营养成分。苹果中的纤维，对儿童的生长发育有益，能促进生长和发育。苹果中的锌对儿童的记忆有益，能增强儿童的记忆力。但苹果中的酸能腐蚀牙齿，吃完苹果后最好漱漱口。',5,0,1,'images/df_goods/goods001.jpg'),(8,'鲜橙子',59.90,'500g',40,'约4kg装 生鲜榨汁夏橙 进口水果','橙子具有宽肠、理气、化痰、消食、开胃、止呕、止痛、止咳等功效，可用于治疗胸闷、腹胀、呕吐、便秘、小便不畅、痔疮出血，解酒、鱼、蟹毒等。',12,0,1,'images/df_goods/goods002.jpg'),(9,'牛油果',29.90,'500g',30,'4粒装（2生2熟）单果重约140-180g 新鲜水果','果实为一种营养价值很高的水果，含多种维生素、丰富的脂肪和蛋白质，钠、钾、镁、钙等含量也高，除作生果食用外也可作菜肴和罐头。',18,0,1,'images/df_goods/goods003.jpg'),(10,'葡萄柚',42.80,'500g',55,'优选大果4个 单果约320-380g 进口水果 海外直采','葡萄柚又叫西柚、朱栾。因挂果时果实密集，呈簇生状，似葡萄成串垂吊，故称葡萄柚。',11,0,1,'images/df_goods/goods004.jpg'),(11,'黄金油桃',38.70,'500g',66,'大果1kg 单果100-150g 新鲜水果','中国的油桃生产起步较晚，早期的品种多引自欧美，味道较酸，由于不太符合东方人的消费习惯，在生产上的影响有限，也给人们留下了“油桃是酸的”的印象。但油桃的营养价值高，富含维生素，有很高的食用价值。',56,0,1,'images/df_goods/goods005.jpg'),(12,'多宝鱼',88.00,'500g',30,'袋装 鲜活冷冻 可溯源海鱼 BAP认证 海鲜水产','胶质蛋白含量高，味道鲜美，营养丰富，具有很好的滋润皮肤和美容的作用，且能补肾健脑，助阳提神；经常食用，可以滋补健身，提高人的抗病能力。',1,0,2,'images/df_goods/goods006.jpg'),(13,'白虾',109.00,'500g',32,'400g 16-20只/盒 原装进口 火锅烧烤食材','虾类营养丰富，且肉质松软，易消化，对身体虚弱以及病后需要调养的人是好的食物',6,0,2,'images/df_goods/goods007.jpg'),(14,'金鲳鱼',39.00,'500g',54,'BAP认证 700g 2条 袋装 海鲜水产','金鲳鱼具有益气养血、补胃益精、滑利关节、柔筋利骨之功效，对消化不良、脾虚泄泻、贫血、筋骨酸痛等很有效。',6,0,2,'images/df_goods/goods008.jpg'),(15,'三文鱼',38.90,'500g',49,'250g/袋 1片装 海鲜水产','三文鱼营养丰富，富含不饱和脂肪酸，鱼肉中的蛋白质含 三文鱼片 三文鱼片(10张)  有18种氨基酸（其中包括人体必需的8种氨基酸），且蛋白质含量明显高于其他鱼类',13,0,2,'images/df_goods/goods009.jpg'),(16,'海鲈鱼',44.20,'500g',66,'400~500g 袋装 海鲜水产','海鲈鱼蛋白质丰富，肉质鲜美，是常见的海洋经济鱼类 海鲈鱼 海鲈鱼(6张)  之一。比较著名的菜肴有宫保海鲈球。',8,0,2,'images/df_goods/goods010.jpg');
 /*!40000 ALTER TABLE `df_goods_goodsinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,6 +276,67 @@ INSERT INTO `df_goods_goodstype` VALUES (1,'新鲜水果',0),(2,'海鲜水产',0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `df_order_orderdetail`
+--
+
+DROP TABLE IF EXISTS `df_order_orderdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `df_order_orderdetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` decimal(5,2) NOT NULL,
+  `count` int(11) NOT NULL,
+  `goods_id` int(11) NOT NULL,
+  `order_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `df_order_orderdetail_goods_id_5b244130_fk_df_goods_goodsinfo_id` (`goods_id`),
+  KEY `df_order_orderdetail_order_id_21a05caa_fk_df_order_orderinfo_oid` (`order_id`),
+  CONSTRAINT `df_order_orderdetail_goods_id_5b244130_fk_df_goods_goodsinfo_id` FOREIGN KEY (`goods_id`) REFERENCES `df_goods_goodsinfo` (`id`),
+  CONSTRAINT `df_order_orderdetail_order_id_21a05caa_fk_df_order_orderinfo_oid` FOREIGN KEY (`order_id`) REFERENCES `df_order_orderinfo` (`oid`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `df_order_orderdetail`
+--
+
+LOCK TABLES `df_order_orderdetail` WRITE;
+/*!40000 ALTER TABLE `df_order_orderdetail` DISABLE KEYS */;
+INSERT INTO `df_order_orderdetail` VALUES (6,29.90,1,9,'201909161535421'),(7,59.90,9,8,'201909161535421'),(8,38.70,2,11,'201909161535421'),(9,42.80,1,10,'201909161535421'),(10,88.00,1,12,'201909161535421'),(11,38.70,4,11,'201909161536041'),(12,38.90,2,15,'201909161536041'),(13,59.90,1,8,'201909161540571'),(14,109.00,1,13,'201909161540571'),(15,39.00,2,14,'201909161540571'),(16,38.70,2,11,'201909161558062'),(17,71.90,2,7,'201909161558062');
+/*!40000 ALTER TABLE `df_order_orderdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `df_order_orderinfo`
+--
+
+DROP TABLE IF EXISTS `df_order_orderinfo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `df_order_orderinfo` (
+  `oid` varchar(20) NOT NULL,
+  `odate` datetime(6) NOT NULL,
+  `oIsPay` tinyint(1) NOT NULL,
+  `ototal` decimal(6,2) NOT NULL,
+  `oaddress` varchar(150) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`oid`),
+  KEY `df_order_orderinfo_user_id_2d705949_fk_df_user_userinfo_id` (`user_id`),
+  CONSTRAINT `df_order_orderinfo_user_id_2d705949_fk_df_user_userinfo_id` FOREIGN KEY (`user_id`) REFERENCES `df_user_userinfo` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `df_order_orderinfo`
+--
+
+LOCK TABLES `df_order_orderinfo` WRITE;
+/*!40000 ALTER TABLE `df_order_orderinfo` DISABLE KEYS */;
+INSERT INTO `df_order_orderinfo` VALUES ('201909161535421','2019-09-16 07:35:42.045245',0,787.20,'3rd, 11street',1),('201909161536041','2019-09-16 07:36:04.385697',0,242.60,'3rd, 11street',1),('201909161540571','2019-09-16 07:40:57.429757',0,256.90,'3rd, 999street',1),('201909161558062','2019-09-16 07:58:06.221682',0,231.20,'123st, 456rd',2);
+/*!40000 ALTER TABLE `df_order_orderinfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `df_user_userinfo`
 --
 
@@ -293,7 +354,7 @@ CREATE TABLE `df_user_userinfo` (
   `recv_code` varchar(6) NOT NULL,
   `is_delete` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +363,7 @@ CREATE TABLE `df_user_userinfo` (
 
 LOCK TABLES `df_user_userinfo` WRITE;
 /*!40000 ALTER TABLE `df_user_userinfo` DISABLE KEYS */;
-INSERT INTO `df_user_userinfo` VALUES (1,'python','88ea39439e74fa27c09a4fc0bc8ebe6d00978392','python@163.com','18899977787','python','3rd, 11street','610000',0);
+INSERT INTO `df_user_userinfo` VALUES (1,'python','88ea39439e74fa27c09a4fc0bc8ebe6d00978392','python@163.com','12345678901','python123','3rd, 999street','610000',0),(2,'python2','88ea39439e74fa27c09a4fc0bc8ebe6d00978392','python2@hah.com','19999999999','python2','123st, 456rd','610077',0),(3,'python3','88ea39439e74fa27c09a4fc0bc8ebe6d00978392','python3@oo.com','','','','',0);
 /*!40000 ALTER TABLE `df_user_userinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +414,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +423,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(4,'auth','group'),(2,'auth','permission'),(3,'auth','user'),(5,'contenttypes','contenttype'),(10,'df_cart','cartinfo'),(9,'df_goods','goodsinfo'),(8,'df_goods','goodstype'),(7,'df_user','userinfo'),(6,'sessions','session');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(4,'auth','group'),(2,'auth','permission'),(3,'auth','user'),(5,'contenttypes','contenttype'),(10,'df_cart','cartinfo'),(9,'df_goods','goodsinfo'),(8,'df_goods','goodstype'),(12,'df_order','orderdetail'),(11,'df_order','orderinfo'),(7,'df_user','userinfo'),(6,'sessions','session');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +440,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +449,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2019-05-30 07:35:23.896888'),(2,'auth','0001_initial','2019-05-30 07:35:24.508363'),(3,'admin','0001_initial','2019-05-30 07:35:24.665343'),(4,'admin','0002_logentry_remove_auto_add','2019-05-30 07:35:24.685611'),(5,'contenttypes','0002_remove_content_type_name','2019-05-30 07:35:24.790999'),(6,'auth','0002_alter_permission_name_max_length','2019-05-30 07:35:24.844798'),(7,'auth','0003_alter_user_email_max_length','2019-05-30 07:35:24.903790'),(8,'auth','0004_alter_user_username_opts','2019-05-30 07:35:24.922840'),(9,'auth','0005_alter_user_last_login_null','2019-05-30 07:35:24.977863'),(10,'auth','0006_require_contenttypes_0002','2019-05-30 07:35:24.987007'),(11,'auth','0007_alter_validators_add_error_messages','2019-05-30 07:35:25.004975'),(12,'auth','0008_alter_user_username_max_length','2019-05-30 07:35:25.117897'),(13,'auth','0009_alter_user_last_name_max_length','2019-05-30 07:35:25.183787'),(14,'df_goods','0001_initial','2019-05-30 07:35:25.348224'),(15,'df_user','0001_initial','2019-05-30 07:35:25.409597'),(16,'sessions','0001_initial','2019-05-30 07:35:25.459556'),(17,'df_goods','0002_goodsinfo_gpic','2019-05-31 08:30:52.422055'),(18,'df_goods','0003_auto_20190906_1419','2019-09-06 06:20:50.204343'),(19,'df_cart','0001_initial','2019-09-06 06:20:51.589568');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2019-05-30 07:35:23.896888'),(2,'auth','0001_initial','2019-05-30 07:35:24.508363'),(3,'admin','0001_initial','2019-05-30 07:35:24.665343'),(4,'admin','0002_logentry_remove_auto_add','2019-05-30 07:35:24.685611'),(5,'contenttypes','0002_remove_content_type_name','2019-05-30 07:35:24.790999'),(6,'auth','0002_alter_permission_name_max_length','2019-05-30 07:35:24.844798'),(7,'auth','0003_alter_user_email_max_length','2019-05-30 07:35:24.903790'),(8,'auth','0004_alter_user_username_opts','2019-05-30 07:35:24.922840'),(9,'auth','0005_alter_user_last_login_null','2019-05-30 07:35:24.977863'),(10,'auth','0006_require_contenttypes_0002','2019-05-30 07:35:24.987007'),(11,'auth','0007_alter_validators_add_error_messages','2019-05-30 07:35:25.004975'),(12,'auth','0008_alter_user_username_max_length','2019-05-30 07:35:25.117897'),(13,'auth','0009_alter_user_last_name_max_length','2019-05-30 07:35:25.183787'),(14,'df_goods','0001_initial','2019-05-30 07:35:25.348224'),(15,'df_user','0001_initial','2019-05-30 07:35:25.409597'),(16,'sessions','0001_initial','2019-05-30 07:35:25.459556'),(17,'df_goods','0002_goodsinfo_gpic','2019-05-31 08:30:52.422055'),(18,'df_goods','0003_auto_20190906_1419','2019-09-06 06:20:50.204343'),(19,'df_cart','0001_initial','2019-09-06 06:20:51.589568'),(20,'df_order','0001_initial','2019-09-12 14:09:10.689439');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,7 +475,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('2b40qax0tbxr59vs2zammci1t6k3gxb0','YjNhY2ZiOGNlYzFiNWM0YjkyNTgxY2FkMDY4MTIyNWU1ZjQ0OGU5Mjp7InVzZXJfaWQiOjEsIl9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMmE0MjhiN2E0YTY3MDE4ODBmMzNmNWFkOWQ5MDE1ZWMwNTQzZmVlIiwidXNlcl9uYW1lIjoicHl0aG9uIn0=','2019-06-13 08:02:52.304383'),('ivtyfb4ljn6oo4vh028diwwf1k5eab76','MzQwYWQwZTg3NTFmOTMwMjcwMjNlMmVmZGY4NzlmNzQ4OTY2YTFjYzp7InVzZXJfaWQiOjEsInVzZXJfbmFtZSI6InB5dGhvbiJ9','2019-09-26 03:37:01.760591'),('nhty7ezlmoq111cpzdm2kmg9vtkp9l5e','MzVlZTc3NjgzOTZmNzA1ZjA1MjI0NTE1MGY2YWFhZWY2NzAzMWUyYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDJhNDI4YjdhNGE2NzAxODgwZjMzZjVhZDlkOTAxNWVjMDU0M2ZlZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=','2019-09-08 15:17:20.813531'),('wolf1uw06me0ca78pr1h5fup6do5ns3l','YTc5YTU4NTA5OGY2NmNkNDYxOWM1YTQ5MjkyNzAzZDQ4MDA4YjMzMTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwidXNlcl9uYW1lIjoicHl0aG9uIiwidXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJkMmE0MjhiN2E0YTY3MDE4ODBmMzNmNWFkOWQ5MDE1ZWMwNTQzZmVlIn0=','2019-06-28 08:54:27.339323'),('yvkmv1ex4gp5cq7tg9th7y97hc66nlz2','MzVlZTc3NjgzOTZmNzA1ZjA1MjI0NTE1MGY2YWFhZWY2NzAzMWUyYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDJhNDI4YjdhNGE2NzAxODgwZjMzZjVhZDlkOTAxNWVjMDU0M2ZlZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=','2019-06-14 09:03:35.009190');
+INSERT INTO `django_session` VALUES ('2b40qax0tbxr59vs2zammci1t6k3gxb0','YjNhY2ZiOGNlYzFiNWM0YjkyNTgxY2FkMDY4MTIyNWU1ZjQ0OGU5Mjp7InVzZXJfaWQiOjEsIl9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkMmE0MjhiN2E0YTY3MDE4ODBmMzNmNWFkOWQ5MDE1ZWMwNTQzZmVlIiwidXNlcl9uYW1lIjoicHl0aG9uIn0=','2019-06-13 08:02:52.304383'),('nhty7ezlmoq111cpzdm2kmg9vtkp9l5e','MzVlZTc3NjgzOTZmNzA1ZjA1MjI0NTE1MGY2YWFhZWY2NzAzMWUyYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDJhNDI4YjdhNGE2NzAxODgwZjMzZjVhZDlkOTAxNWVjMDU0M2ZlZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=','2019-09-08 15:17:20.813531'),('wolf1uw06me0ca78pr1h5fup6do5ns3l','YTc5YTU4NTA5OGY2NmNkNDYxOWM1YTQ5MjkyNzAzZDQ4MDA4YjMzMTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwidXNlcl9uYW1lIjoicHl0aG9uIiwidXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJkMmE0MjhiN2E0YTY3MDE4ODBmMzNmNWFkOWQ5MDE1ZWMwNTQzZmVlIn0=','2019-06-28 08:54:27.339323'),('yvkmv1ex4gp5cq7tg9th7y97hc66nlz2','MzVlZTc3NjgzOTZmNzA1ZjA1MjI0NTE1MGY2YWFhZWY2NzAzMWUyYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDJhNDI4YjdhNGE2NzAxODgwZjMzZjVhZDlkOTAxNWVjMDU0M2ZlZSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=','2019-06-14 09:03:35.009190');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -427,4 +488,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-12 11:47:02
+-- Dump completed on 2019-09-16 22:40:24

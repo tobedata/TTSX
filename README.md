@@ -35,13 +35,14 @@ Django-搭建小型电商购物网站
 
 1. 安装Ubuntu16.04，默认Python解释器Python2.7.12和Python3.5.2
 2. 安装MySQL5.7，确保能够正确启动服务并运行；修改数据库编码设置为utf8
-3. 安装虚拟环境Virtualenv，最好使用apt安装；创建虚拟环境，指定解释器Python3.5.2，并进入虚拟环境
+3. 安装虚拟环境Virtualenv；创建虚拟环境，指定解释器Python3.5.2，并进入虚拟环境
 4. 安装Git，生成密钥，配置个人的用户名称和电子邮件地址，建立连接
 5. 安装开发工具IDE或文本编辑器，并配置解释器路径为创建的虚拟环境
 6. 克隆远程仓库到本地仓库
 7. 虚拟环境下，进入项目目录，根据requirement.txt安装依赖包
 8. 新建mysql数据库，查看该数据库的编码格式，确保为utf8；根据数据库名称和密码，修改settings.py数据库相关配置，需要生成迁移和执行迁移，需要创建超级用户
 9. 或者直接新建名为ttsx的数据库（名称必须ttsx），查看该数据库的编码格式，确保为utf8；利用项目目录下的ttsx.sql恢复到刚刚新建的ttsx数据库，不用生成迁移和执行迁移，不用创建超级用户（超级用户名python/密码python123）
+10. 由于使用了haystack全文检索和jieba中文分词处理，复制项目目录下的ChineseAnalyzer.py和whoosh_cn_backend.py到`/虚拟python环境/site-packages/haystack/backends`中
 10. 运行服务器，并在浏览器中访问。新建的mysql数据库，需要点击页面注册用户然后登录用户和进入管理页面添加商品信息；恢复项目目录下的数据库，登录名python/密码123123123，显示部分商品信息信息和订单信息
 11. 如果不能全文检索，初始化索引数据`python manage.py rebuild_index`，选y
 

@@ -112,3 +112,12 @@ venv.bak/
 apps/df_user/migrations/*
 # package needed
 apps/df_user/migrations/__init__.py
+
+apps/df_cart/migrations/*
+apps/df_cart/migrations/__init__.py
+
+apps/df_goods/migrations/*
+apps/df_goodsmigrations/__init__.py
+
+apps/df_order/migrations/*
+apps/df_order/migrations/__init__.py
